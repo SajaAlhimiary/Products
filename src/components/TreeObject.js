@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import TreeView from "./TreeView";
+import SelectedVariants from "./SelectedVariants";
 
 const TreeObject = ({ object }) => {
   const [childVisible, setChildVisiblity] = useState(false);
   const [checked, setChecked] = useState(false);
-  const [variant, setVariant] = useState("");
+  const [selectedVariants, setSelectedVariants] = useState([]);
 
   const handleCheck = () => {
     setChecked(!checked);
-    checked ? setVariant(variant + ", " + object.label) : setVariant(variant);
-    // console.log(variant);
+    checked
+      ? setSelectedVariants(selectedVariants.push(object.label))
+      : setSelectedVariants(selectedVariants);
+    <SelectedVariants variants={selectedVariants} />;
   };
 
   const hasChild = object.children ? true : false;
@@ -28,14 +31,14 @@ const TreeObject = ({ object }) => {
           <div className="col d-tree-head">
             <input type="checkbox" checked={checked} onChange={handleCheck} />
             {object.label}
-            <h6>{object.quantity}</h6>
+            <h6 className="d-tree-quantity">{object.quantity}</h6>
           </div>
         </div>
 
         {hasChild && childVisible && (
           <div className="d-tree-content">
             <ul className="d-flex d-tree-container flex-column">
-              <TreeView data={object.children} variant={variant} />
+              <TreeView data={object.children} />
             </ul>
           </div>
         )}

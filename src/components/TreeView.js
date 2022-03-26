@@ -1,5 +1,4 @@
 import TreeObject from "./TreeObject";
-import SelectedVariants from "./SelectedVariants";
 
 const TreeView = ({ data = [] }) => {
   return (
@@ -9,7 +8,6 @@ const TreeView = ({ data = [] }) => {
           <TreeObject object={TreeView} />
         ))}
       </ul>
-      <SelectedVariants variant={data.variant} />
     </div>
   );
 };

@@ -1,10 +1,14 @@
 import React from "react";
 
-const SelectedVariants = ({ variant }) => {
+const SelectedVariants = ({ variants = [] }) => {
   return (
     <div className="variants">
       <div>Selected Variants</div>
-      <p>{variant}</p>
+      <p>
+        {variants.map((variant, v) => (
+          <h6 key={v}>{variant}</h6>
+        ))}
+      </p>
     </div>
   );
 };
